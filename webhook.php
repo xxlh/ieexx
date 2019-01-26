@@ -1,5 +1,5 @@
 <?php
-   // error_reporting(1);
+   error_reporting(1);
 
     $target = '/usr/share/nginx/html'; // 生产环境web目录
     //密钥
