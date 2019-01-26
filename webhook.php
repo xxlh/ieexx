@@ -37,11 +37,9 @@
         // }
         // 感谢@墨迹凡指正，可以直接用www用户拉取代码而不用每次拉取后再修改用户组
         // $cmd = "sudo -Hu www cd $target && git pull";
-		$cmd = "eval `ssh-agent -s` && ssh-add 2>&1";
-		shell_exec($cmd);
-        $cmd = "cd $target && git pull 2>&1";
+        $cmd = "eval `ssh-agent -s` && ssh-add && cd $target && git pull 2>&1";
         $res = shell_exec($cmd);
-echo $res;
+
         $res_log .= 'Success:'.PHP_EOL;
         $res_log .= $content['head_commit']['author']['name'] . ' 在' . date('Y-m-d H:i:s') . '向' . $content['repository']['name'] . '项目的' . $content['ref'] . '分支push了' . count($content['commits']) . '个commit：' . PHP_EOL;
         $res_log .= $res.PHP_EOL;
