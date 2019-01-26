@@ -3,7 +3,7 @@
 
     $target = '/usr/share/nginx/html'; // 生产环境web目录
     //密钥
-    $secret = "root";
+    $secret = "infor";
     $wwwUser = 'nginx';
     $wwwGroup = 'nginx';
 
