@@ -1,6 +1,6 @@
 <?php
-   error_reporting(1);
-
+//    error_reporting(1);
+echo 11;
     $target = '/usr/share/nginx/html'; // 生产环境web目录
     //密钥
     $secret = "infor";
@@ -19,7 +19,8 @@
     if (!$signature) {
        fclose($fs);
        return http_response_code(404);
-     }
+	 }
+print_r($json);
 
     list($algo, $hash) = explode('=', $signature, 2);
     //计算签名  
@@ -27,6 +28,7 @@
 
     // 判断签名是否匹配  
     if ($hash === $payloadHash) {
+echo 22;
         // $cmds = array(
         //     "cd $target && git pull",
         //     "chown -R {$wwwUser}:{$wwwGroup} $target/",
@@ -40,6 +42,7 @@
         $cmd = "cd $target && git pull 2>&1";
         $res = shell_exec($cmd);
 
+echo 33;
         $res_log .= 'Success:'.PHP_EOL;
         $res_log .= $content['head_commit']['author']['name'] . ' 在' . date('Y-m-d H:i:s') . '向' . $content['repository']['name'] . '项目的' . $content['ref'] . '分支push了' . count($content['commits']) . '个commit：' . PHP_EOL;
         $res_log .= $res.PHP_EOL;
@@ -50,6 +53,7 @@
 
 
       } else {
+echo 00;
             $res_log  = 'Error:'.PHP_EOL;
             $res_log .= $content['head_commit']['author']['name'] . ' 在' . date('Y-m-d H:i:s') . '向' . $content['repository']['name'] . '项目的' . $content['ref'] . '分支push了' . count($content['commits']) . '>个commit：' . PHP_EOL;
             $res_log .= '密钥不正确不能pull'.PHP_EOL;
