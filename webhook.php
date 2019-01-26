@@ -37,7 +37,7 @@
         // }
         // 感谢@墨迹凡指正，可以直接用www用户拉取代码而不用每次拉取后再修改用户组
         // $cmd = "sudo -Hu www cd $target && git pull";
-        $cmd = "cd $target && git pull https://xxlh:xlh1225@github.com/xxlh/ieexx.git 2>&1";
+        $cmd = "cd $target && git pull 2>&1";
         $res = shell_exec($cmd);
 
 echo $res;
@@ -46,7 +46,7 @@ echo $res;
         $res_log .= $res.PHP_EOL;
         $res_log .= '======================================================================='.PHP_EOL;
 
-echo        fwrite($fs, $res_log);
+        fwrite($fs, $res_log);
         $fs and fclose($fs);
 
       } else {
