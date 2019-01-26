@@ -1,6 +1,6 @@
 <?php
 //    error_reporting(1);
-echo 11;
+
     $target = '/usr/share/nginx/html'; // 生产环境web目录
     //密钥
     $secret = "infor";
@@ -20,7 +20,6 @@ echo 11;
        fclose($fs);
        return http_response_code(404);
 	 }
-print_r($json);
 
     list($algo, $hash) = explode('=', $signature, 2);
     //计算签名  
@@ -28,7 +27,6 @@ print_r($json);
 
     // 判断签名是否匹配  
     if ($hash === $payloadHash) {
-echo 22;
         // $cmds = array(
         //     "cd $target && git pull",
         //     "chown -R {$wwwUser}:{$wwwGroup} $target/",
@@ -39,7 +37,7 @@ echo 22;
         // }
         // 感谢@墨迹凡指正，可以直接用www用户拉取代码而不用每次拉取后再修改用户组
         // $cmd = "sudo -Hu www cd $target && git pull";
-        $cmd = "cd $target && git pull 2>&1";
+        $cmd = "cd $target && git pull https://xxlh:xlh1225@github.com/xxlh/ieexx.git 2>&1";
         $res = shell_exec($cmd);
 
 echo $res;
@@ -50,10 +48,8 @@ echo $res;
 
 echo        fwrite($fs, $res_log);
         $fs and fclose($fs);
-echo 44;
 
       } else {
-echo 00;
             $res_log  = 'Error:'.PHP_EOL;
             $res_log .= $content['head_commit']['author']['name'] . ' 在' . date('Y-m-d H:i:s') . '向' . $content['repository']['name'] . '项目的' . $content['ref'] . '分支push了' . count($content['commits']) . '>个commit：' . PHP_EOL;
             $res_log .= '密钥不正确不能pull'.PHP_EOL;
