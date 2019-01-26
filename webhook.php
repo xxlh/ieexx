@@ -37,7 +37,9 @@
         // }
         // 感谢@墨迹凡指正，可以直接用www用户拉取代码而不用每次拉取后再修改用户组
         // $cmd = "sudo -Hu www cd $target && git pull";
-        $cmd = "eval `ssh-agent -s` && ssh-add && cd $target && git pull 2>&1";
+		$cmd = "eval `ssh-agent -s` && ssh-add 2>&1";
+		shell_exec($cmd);
+        $cmd = "cd $target && git pull 2>&1";
         $res = shell_exec($cmd);
 
         $res_log .= 'Success:'.PHP_EOL;
