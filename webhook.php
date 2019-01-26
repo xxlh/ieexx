@@ -8,7 +8,7 @@ echo 11;
     $wwwGroup = 'nginx';
 
     //日志文件地址
-    $fs = fopen('/root/xlh/logs/gitHubAuto_hook_xlh.log', 'a');
+    $fs = fopen('/var/log/nginx/gitHubAuto_hook_xlh.log', 'a');
 
     //获取GitHub发送的内容 
     $json = file_get_contents('php://input');
@@ -48,7 +48,7 @@ echo $res;
         $res_log .= $res.PHP_EOL;
         $res_log .= '======================================================================='.PHP_EOL;
 
-        fwrite($fs, $res_log);
+echo        fwrite($fs, $res_log);
         $fs and fclose($fs);
 echo 44;
 
